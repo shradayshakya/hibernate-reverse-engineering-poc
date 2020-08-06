@@ -1,0 +1,20 @@
+micronaut:
+  application:
+    name: reengineering
+jpa:
+  default:
+    packages-to-scan:
+      - 'poc.database.core'
+    properties:
+      hibernate:
+        hbm2ddl:
+          auto: none
+        show_sql: true
+datasources:
+  default:
+    url: jdbc:oracle:thin:@localhost:1521/ORCLCDB.localdomain
+    driverClassName: oracle.jdbc.driver.OracleDriver
+    username: hit_resynthesis
+    password: delphi
+    schema-generate: DROP
+    dialect: org.hibernate.dialect.Oracle10gDialect
