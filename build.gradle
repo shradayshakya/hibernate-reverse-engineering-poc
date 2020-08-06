@@ -5,7 +5,7 @@ plugins {
     id 'java'
 }
 
-//apply plugin: 'hibernatetools-gradle-plugin'
+apply plugin: 'hibernatetools-gradle-plugin'
 
 version "0.1"
 group "com.nurixtx.nxvision"
@@ -39,23 +39,23 @@ dependencies {
     testImplementation "io.micronaut.test:micronaut-test-junit5"
     testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine"
 
-//    runtimeOnly 'org.hibernate:hibernate-entitymanager:4.3.7.Final'
-//    runtimeOnly 'org.hibernate:hibernate-core:4.3.7.Final'
+    runtimeOnly 'org.hibernate:hibernate-entitymanager:4.3.7.Final'
+    runtimeOnly 'org.hibernate:hibernate-core:4.3.7.Final'
 
     compile('javax.xml.bind:jaxb-api:2.3.0')
     compile('javax.activation:activation:1.1')
     compile('org.glassfish.jaxb:jaxb-runtime:2.3.0')
 
     compile group: 'org.postgresql', name: 'postgresql', version: '42.2.12'
-
     compile files('libs/ojdbc7.jar')
-    annotationProcessor "io.micronaut.data:micronaut-data-processor:1.0.0.M5"
-    compile 'io.micronaut.data:micronaut-data-hibernate-jpa:1.0.0.M5'
-    implementation "io.micronaut.data:micronaut-data-hibernate-jpa:1.0.0.M5", {
-    }
-    runtime 'com.h2database:h2'
-    runtime "io.micronaut.configuration:micronaut-jdbc-hikari"
-    compile 'io.micronaut.configuration:micronaut-liquibase'
+
+//    annotationProcessor "io.micronaut.data:micronaut-data-processor:1.0.0.M5"
+//    compile 'io.micronaut.data:micronaut-data-hibernate-jpa:1.0.0.M5'
+//    implementation "io.micronaut.data:micronaut-data-hibernate-jpa:1.0.0.M5", {
+//    }
+//    runtime 'com.h2database:h2'
+//    runtime "io.micronaut.configuration:micronaut-jdbc-hikari"
+//    compile 'io.micronaut.configuration:micronaut-liquibase'
 }
 
 test.classpath += configurations.developmentOnly
@@ -79,16 +79,16 @@ tasks.withType(JavaExec) {
     jvmArgs('-noverify', '-XX:TieredStopAtLevel=1', '-Dcom.sun.management.jmxremote')
 }
 
-//import org.hibernate.gradle.tools.*
-//
-//database{
-//    catalog = [".*":new Schema("HIT_RESYNTHESIS", ".*")]
-//    driver="oracle.jdbc.driver.OracleDriver"
-//    dialect="org.hibernate.dialect.Oracle10gDialect"
-//    url="jdbc:oracle:thin:@localhost"
-//    urlSuffix="/ORCLCDB.localdomain"
-//    user="hit_resynthesis"
-//    password="delphi"
-//    port=1521
-//    basePackage = "poc.database.core.models"
-//}
+import org.hibernate.gradle.tools.*
+
+database{
+    catalog = [".*":new Schema("HIT_RESYNTHESIS", ["WORKFLOWS", "CYCLES"])]
+    driver="oracle.jdbc.driver.OracleDriver"
+    dialect="org.hibernate.dialect.Oracle10gDialect"
+    url="jdbc:oracle:thin:@localhost"
+    urlSuffix="/ORCLCDB.localdomain"
+    user="hit_resynthesis"
+    password="delphi"
+    port=1521
+    basePackage = "poc.database.core.models"
+}
