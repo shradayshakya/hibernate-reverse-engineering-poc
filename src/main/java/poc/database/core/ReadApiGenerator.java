@@ -12,12 +12,12 @@ import javax.inject.Inject;
 import java.math.BigDecimal;
 
 @Filter("/api/**")
-public class TraceFilter implements HttpServerFilter {
+public class ReadApiGenerator implements HttpServerFilter {
 
     @Inject
     private GenericReadRepository genericReadRepository;
 
-    private static final Logger LOG = LoggerFactory.getLogger(TraceFilter.class);
+    private static final Logger LOG = LoggerFactory.getLogger(ReadApiGenerator.class);
 
     @Override
     public Publisher<MutableHttpResponse<?>> doFilter(HttpRequest<?> request, ServerFilterChain chain) {
